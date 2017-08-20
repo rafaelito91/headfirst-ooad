@@ -57,6 +57,8 @@ public class Inventory {
             if ((topWood != null) && (!topWood.equals("")) && (!topWood.equals(guitar.getTopWood()))) {
                 continue;
             }
+
+            return guitar;
         }
 
         return null;
