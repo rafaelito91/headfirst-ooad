@@ -1,4 +1,4 @@
-package br.com.study.headfirst.ooad.instrument;
+package br.com.study.headfirst.ooad.instrument.guitar;
 
 /**
  * Created by rafael on 20/08/17.

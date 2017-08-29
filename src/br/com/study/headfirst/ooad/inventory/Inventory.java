@@ -1,9 +1,12 @@
 package br.com.study.headfirst.ooad.inventory;
 
-import br.com.study.headfirst.ooad.instrument.*;
+import br.com.study.headfirst.ooad.instrument.characteristics.Builder;
+import br.com.study.headfirst.ooad.instrument.characteristics.Type;
+import br.com.study.headfirst.ooad.instrument.characteristics.Wood;
+import br.com.study.headfirst.ooad.instrument.guitar.Guitar;
+import br.com.study.headfirst.ooad.instrument.guitar.GuitarSpec;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 

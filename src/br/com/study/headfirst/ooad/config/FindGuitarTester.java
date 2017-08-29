@@ -1,6 +1,10 @@
 package br.com.study.headfirst.ooad.config;
 
-import br.com.study.headfirst.ooad.instrument.*;
+import br.com.study.headfirst.ooad.instrument.characteristics.Builder;
+import br.com.study.headfirst.ooad.instrument.characteristics.Type;
+import br.com.study.headfirst.ooad.instrument.characteristics.Wood;
+import br.com.study.headfirst.ooad.instrument.guitar.Guitar;
+import br.com.study.headfirst.ooad.instrument.guitar.GuitarSpec;
 import br.com.study.headfirst.ooad.inventory.Inventory;
 
 import java.util.List;

@@ -1,4 +1,8 @@
-package br.com.study.headfirst.ooad.instrument;
+package br.com.study.headfirst.ooad.instrument.guitar;
+
+import br.com.study.headfirst.ooad.instrument.characteristics.Builder;
+import br.com.study.headfirst.ooad.instrument.characteristics.Type;
+import br.com.study.headfirst.ooad.instrument.characteristics.Wood;
 
 /**
  * Created by rafael on 28/08/17.
