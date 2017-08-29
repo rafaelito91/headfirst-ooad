@@ -9,11 +9,10 @@ public class Guitar {
     private double price;
     private GuitarSpec spec;
 
-    public Guitar(String seriaNumber, Double price, Builder builder, String model,
-                  Type type, Wood backWood, Wood topWood) {
+    public Guitar(String seriaNumber, Double price, GuitarSpec spec) {
         this.serialNumber = seriaNumber;
         this.price = price;
-        this.spec = new GuitarSpec(builder, model, type, backWood, topWood);
+        this.spec = spec;
     }
 
     public String getSerialNumber() {

@@ -15,8 +15,9 @@ public class Inventory {
     private List<Guitar> guitars = new ArrayList<>();
 
     public void addGuitar(String serialNumber, Double price, Builder builder, String model,
-                          Type type, Wood backWood, Wood topWood) {
-        Guitar guitar = new Guitar(serialNumber, price, builder, model, type, backWood, topWood);
+                          Type type, Wood backWood, Wood topWood, int numStrings) {
+        GuitarSpec spec = new GuitarSpec(builder, model, type, backWood, topWood, numStrings);
+        Guitar guitar = new Guitar(serialNumber, price, spec);
         guitars.add(guitar);
     }
 
@@ -51,6 +52,10 @@ public class Inventory {
             }
 
             if (guitarSpec.getTopWood() != searchSpec.getTopWood()) {
+                continue;
+            }
+
+            if (guitarSpec.getNumStrings() != searchSpec.getNumStrings()) {
                 continue;
             }
 
