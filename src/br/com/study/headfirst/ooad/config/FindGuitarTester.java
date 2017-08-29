@@ -6,6 +6,8 @@ import br.com.study.headfirst.ooad.instrument.Type;
 import br.com.study.headfirst.ooad.instrument.Wood;
 import br.com.study.headfirst.ooad.inventory.Inventory;
 
+import java.util.List;
+
 /**
  * Created by rafael on 20/08/17.
  */
@@ -17,15 +19,18 @@ public class FindGuitarTester {
 
         Guitar whatErinLikes = new Guitar("", Double.valueOf(0), Builder.FENDER, "Stratocastor", Type.ELECTRIC, Wood.ALDER, Wood.ALDER);
 
-        Guitar guitar = inventory.search(whatErinLikes);
+        List<Guitar> guitars = inventory.search(whatErinLikes);
 
-        if (guitar != null) {
-            System.out.println("Erin, you might like this " + guitar.getBuilder() + " " + guitar.getModel() + " " + guitar.getType() + " guitar:" + "\n" +
-                    "\t" + guitar.getBackWood() + " back and sides," + "\n" +
-                    "\t" + guitar.getTopWood() + " top." + "\n" +
-                    "You can have it for only $" + guitar.getPrice() + "!");
-        } else {
+        if(guitars.size() == 0) {
             System.out.println("Sorry, Erin, we have nothing for you");
+        } else {
+            for (Guitar guitar : guitars) {
+                System.out.println("Erin, you might like this " + guitar.getBuilder() + " " + guitar.getModel() + " " + guitar.getType() + " guitar:" + "\n" +
+                        "\t" + guitar.getBackWood() + " back and sides," + "\n" +
+                        "\t" + guitar.getTopWood() + " top." + "\n" +
+                        "You can have it for only $" + guitar.getPrice() + "!");
+                System.out.println("------------------------------------------------");
+            }
         }
     }
 
@@ -34,5 +39,6 @@ public class FindGuitarTester {
         inventory.addGuitar("D32334", Double.valueOf(9999.99), Builder.FENDER, "Stratocastor", Type.ACOUSTIC, Wood.ALDER, Wood.ALDER);
         inventory.addGuitar("H86833", Double.valueOf(5000.00), Builder.EASTWOOD, "Stratocastor", Type.ELECTRIC, Wood.ALDER, Wood.ALDER);
         inventory.addGuitar("V95693", Double.valueOf(1499.95), Builder.FENDER, "Stratocastor", Type.ELECTRIC, Wood.ALDER, Wood.ALDER);
+        inventory.addGuitar("T44324", Double.valueOf(4499.95), Builder.FENDER, "Stratocastor", Type.ELECTRIC, Wood.ALDER, Wood.ALDER);
     }
 }

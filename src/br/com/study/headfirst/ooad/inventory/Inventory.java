@@ -7,6 +7,7 @@ import br.com.study.headfirst.ooad.instrument.Wood;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -31,7 +32,8 @@ public class Inventory {
         return null;
     }
 
-    public Guitar search(Guitar searchGuitar) {
+    public List search(Guitar searchGuitar) {
+        List<Guitar> matchingGuitars = new LinkedList<>();
         for (Guitar guitar : guitars) {
 
             if (guitar.getBuilder() != searchGuitar.getBuilder()) {
@@ -55,9 +57,9 @@ public class Inventory {
                 continue;
             }
 
-            return guitar;
+            matchingGuitars.add(guitar);
         }
 
-        return null;
+        return matchingGuitars;
     }
 }
