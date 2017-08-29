@@ -21,6 +21,36 @@ public class GuitarSpec {
         this.numStrings = numStrings;
     }
 
+    public boolean match(GuitarSpec spec) {
+
+        if (builder != spec.getBuilder()) {
+            return false;
+        }
+
+        String searchSpecModel = spec.getModel();
+        if ((searchSpecModel != null) && (!searchSpecModel.equals("")) && (!searchSpecModel.equals(model))) {
+            return false;
+        }
+
+        if (type != spec.getType()) {
+            return false;
+        }
+
+        if (backWood != spec.getBackWood()) {
+            return false;
+        }
+
+        if (topWood != spec.getTopWood()) {
+            return false;
+        }
+
+        if (numStrings != spec.getNumStrings()) {
+            return false;
+        }
+
+        return true;
+    }
+
     public Builder getBuilder() {
         return builder;
     }
@@ -68,4 +98,6 @@ public class GuitarSpec {
     public void setNumStrings(int numStrings) {
         this.numStrings = numStrings;
     }
+
+
 }

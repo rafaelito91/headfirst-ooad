@@ -34,32 +34,9 @@ public class Inventory {
         List<Guitar> matchingGuitars = new LinkedList<>();
         for (Guitar guitar : guitars) {
             GuitarSpec guitarSpec = guitar.getSpec();
-            if (guitarSpec.getBuilder() != searchSpec.getBuilder()) {
-                continue;
+            if(guitarSpec.match(searchSpec)) {
+                matchingGuitars.add(guitar);
             }
-
-            String model = searchSpec.getModel();
-            if ((model != null) && (!model.equals("")) && (!model.equals(guitarSpec.getModel()))) {
-                continue;
-            }
-
-            if (guitarSpec.getType() != searchSpec.getType()) {
-                continue;
-            }
-
-            if (guitarSpec.getBackWood() != searchSpec.getBackWood()) {
-                continue;
-            }
-
-            if (guitarSpec.getTopWood() != searchSpec.getTopWood()) {
-                continue;
-            }
-
-            if (guitarSpec.getNumStrings() != searchSpec.getNumStrings()) {
-                continue;
-            }
-
-            matchingGuitars.add(guitar);
         }
 
         return matchingGuitars;
