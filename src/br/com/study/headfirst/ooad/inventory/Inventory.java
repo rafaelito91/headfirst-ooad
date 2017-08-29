@@ -1,10 +1,11 @@
 package br.com.study.headfirst.ooad.inventory;
 
-import br.com.study.headfirst.ooad.instrument.characteristics.Builder;
-import br.com.study.headfirst.ooad.instrument.characteristics.Type;
-import br.com.study.headfirst.ooad.instrument.characteristics.Wood;
+import br.com.study.headfirst.ooad.instrument.Instrument;
+import br.com.study.headfirst.ooad.instrument.InstrumentSpec;
 import br.com.study.headfirst.ooad.instrument.guitar.Guitar;
 import br.com.study.headfirst.ooad.instrument.guitar.GuitarSpec;
+import br.com.study.headfirst.ooad.instrument.mandolin.Mandolin;
+import br.com.study.headfirst.ooad.instrument.mandolin.MandolinSpec;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -15,19 +16,24 @@ import java.util.List;
  */
 public class Inventory {
 
-    private List<Guitar> guitars = new ArrayList<>();
+    private List<Instrument> instruments = new ArrayList<>();
 
-    public void addGuitar(String serialNumber, Double price, Builder builder, String model,
-                          Type type, Wood backWood, Wood topWood, int numStrings) {
-        GuitarSpec spec = new GuitarSpec(builder, model, type, backWood, topWood, numStrings);
-        Guitar guitar = new Guitar(serialNumber, price, spec);
-        guitars.add(guitar);
+    public void addInstrument(String serialNumber, Double price, InstrumentSpec spec) {
+        Instrument instrument = null;
+
+        if (spec instanceof GuitarSpec) {
+            instrument = new Guitar(serialNumber, price, (GuitarSpec) spec);
+        } else if (spec instanceof MandolinSpec) {
+            instrument = new Mandolin(serialNumber, price, (MandolinSpec) spec);
+        }
+
+        instruments.add(instrument);
     }
 
-    public Guitar getGuitar(String serialNumber) {
-        for (Guitar guitar : guitars) {
-            if (guitar.getSerialNumber().equals(serialNumber)) {
-                return guitar;
+    public Instrument get(String serialNumber) {
+        for (Instrument instrument : instruments) {
+            if (instrument.getSerialNumber().equals(serialNumber)) {
+                return instrument;
             }
         }
         return null;
@@ -35,13 +41,25 @@ public class Inventory {
 
     public List search(GuitarSpec searchSpec) {
         List<Guitar> matchingGuitars = new LinkedList<>();
-        for (Guitar guitar : guitars) {
-            GuitarSpec guitarSpec = guitar.getSpec();
-            if(guitarSpec.match(searchSpec)) {
+        for (Instrument instrument : instruments) {
+            Guitar guitar = (Guitar) instrument;
+            if(guitar.getSpec().match(searchSpec)) {
                 matchingGuitars.add(guitar);
             }
         }
 
         return matchingGuitars;
+    }
+
+    public List search(MandolinSpec searchSpec) {
+        List<Mandolin> matchingMandolins = new LinkedList<>();
+        for (Instrument instrument : instruments) {
+            Mandolin mandolin = (Mandolin) instrument;
+            if (mandolin.getSpec().match(searchSpec)) {
+                matchingMandolins.add(mandolin);
+            }
+        }
+
+        return matchingMandolins;
     }
 }
