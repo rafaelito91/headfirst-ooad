@@ -1,9 +1,6 @@
 package br.com.study.headfirst.ooad.config;
 
-import br.com.study.headfirst.ooad.instrument.Builder;
-import br.com.study.headfirst.ooad.instrument.Guitar;
-import br.com.study.headfirst.ooad.instrument.Type;
-import br.com.study.headfirst.ooad.instrument.Wood;
+import br.com.study.headfirst.ooad.instrument.*;
 import br.com.study.headfirst.ooad.inventory.Inventory;
 
 import java.util.List;
@@ -17,7 +14,7 @@ public class FindGuitarTester {
         Inventory inventory = new Inventory();
         intializeInventory(inventory);
 
-        Guitar whatErinLikes = new Guitar("", Double.valueOf(0), Builder.FENDER, "Stratocastor", Type.ELECTRIC, Wood.ALDER, Wood.ALDER);
+        GuitarSpec whatErinLikes = new GuitarSpec(Builder.FENDER, "Stratocastor", Type.ELECTRIC, Wood.ALDER, Wood.ALDER);
 
         List<Guitar> guitars = inventory.search(whatErinLikes);
 
@@ -25,9 +22,10 @@ public class FindGuitarTester {
             System.out.println("Sorry, Erin, we have nothing for you");
         } else {
             for (Guitar guitar : guitars) {
-                System.out.println("Erin, you might like this " + guitar.getBuilder() + " " + guitar.getModel() + " " + guitar.getType() + " guitar:" + "\n" +
-                        "\t" + guitar.getBackWood() + " back and sides," + "\n" +
-                        "\t" + guitar.getTopWood() + " top." + "\n" +
+                GuitarSpec guitarSpec = guitar.getSpec();
+                System.out.println("Erin, you might like this " + guitarSpec.getBuilder() + " " + guitarSpec.getModel() + " " + guitarSpec.getType() + " guitar:" + "\n" +
+                        "\t" + guitarSpec.getBackWood() + " back and sides," + "\n" +
+                        "\t" + guitarSpec.getTopWood() + " top." + "\n" +
                         "You can have it for only $" + guitar.getPrice() + "!");
                 System.out.println("------------------------------------------------");
             }

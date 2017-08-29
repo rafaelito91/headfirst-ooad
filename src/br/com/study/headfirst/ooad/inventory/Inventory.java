@@ -1,9 +1,6 @@
 package br.com.study.headfirst.ooad.inventory;
 
-import br.com.study.headfirst.ooad.instrument.Builder;
-import br.com.study.headfirst.ooad.instrument.Guitar;
-import br.com.study.headfirst.ooad.instrument.Type;
-import br.com.study.headfirst.ooad.instrument.Wood;
+import br.com.study.headfirst.ooad.instrument.*;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -32,28 +29,28 @@ public class Inventory {
         return null;
     }
 
-    public List search(Guitar searchGuitar) {
+    public List search(GuitarSpec searchSpec) {
         List<Guitar> matchingGuitars = new LinkedList<>();
         for (Guitar guitar : guitars) {
-
-            if (guitar.getBuilder() != searchGuitar.getBuilder()) {
+            GuitarSpec guitarSpec = guitar.getSpec();
+            if (guitarSpec.getBuilder() != searchSpec.getBuilder()) {
                 continue;
             }
 
-            String model = searchGuitar.getModel();
-            if ((model != null) && (!model.equals("")) && (!model.equals(guitar.getModel()))) {
+            String model = searchSpec.getModel();
+            if ((model != null) && (!model.equals("")) && (!model.equals(guitarSpec.getModel()))) {
                 continue;
             }
 
-            if (guitar.getType() != searchGuitar.getType()) {
+            if (guitarSpec.getType() != searchSpec.getType()) {
                 continue;
             }
 
-            if (guitar.getBackWood() != searchGuitar.getBackWood()) {
+            if (guitarSpec.getBackWood() != searchSpec.getBackWood()) {
                 continue;
             }
 
-            if (guitar.getTopWood() != searchGuitar.getTopWood()) {
+            if (guitarSpec.getTopWood() != searchSpec.getTopWood()) {
                 continue;
             }
 
