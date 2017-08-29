@@ -1,6 +1,9 @@
 package br.com.study.headfirst.ooad.config;
 
+import br.com.study.headfirst.ooad.instrument.Builder;
 import br.com.study.headfirst.ooad.instrument.Guitar;
+import br.com.study.headfirst.ooad.instrument.Type;
+import br.com.study.headfirst.ooad.instrument.Wood;
 import br.com.study.headfirst.ooad.inventory.Inventory;
 
 /**
@@ -12,7 +15,7 @@ public class FindGuitarTester {
         Inventory inventory = new Inventory();
         intializeInventory(inventory);
 
-        Guitar whatErinLikes = new Guitar("", 0, "Fender", "Stratocastor", "Electric", "Alder", "Alder");
+        Guitar whatErinLikes = new Guitar("", Double.valueOf(0), Builder.FENDER, "Stratocastor", Type.ELECTRIC, Wood.ALDER, Wood.ALDER);
 
         Guitar guitar = inventory.search(whatErinLikes);
 
@@ -27,9 +30,9 @@ public class FindGuitarTester {
     }
 
     private static void intializeInventory(Inventory inventory) {
-        inventory.addGuitar("214534", 2000.00, "Fender", "Model 1", "Electric", "Alder", "Alder");
-        inventory.addGuitar("D32334", 9999.99, "Fender", "Stratocastor", "Acoustic", "Alder", "Alder");
-        inventory.addGuitar("H86833", 5000.00, "Eastwood", "Stratocastor", "Electric", "Alder", "Alder");
-        inventory.addGuitar("V95693", 1499.95, "Fender", "Stratocastor", "Electric", "Alder", "Alder");
+        inventory.addGuitar("214534", Double.valueOf(2000.00), Builder.FENDER, "Model 1", Type.ELECTRIC, Wood.ALDER, Wood.ALDER);
+        inventory.addGuitar("D32334", Double.valueOf(9999.99), Builder.FENDER, "Stratocastor", Type.ACOUSTIC, Wood.ALDER, Wood.ALDER);
+        inventory.addGuitar("H86833", Double.valueOf(5000.00), Builder.EASTWOOD, "Stratocastor", Type.ELECTRIC, Wood.ALDER, Wood.ALDER);
+        inventory.addGuitar("V95693", Double.valueOf(1499.95), Builder.FENDER, "Stratocastor", Type.ELECTRIC, Wood.ALDER, Wood.ALDER);
     }
 }
