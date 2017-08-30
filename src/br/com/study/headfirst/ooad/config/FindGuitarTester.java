@@ -1,16 +1,16 @@
 package br.com.study.headfirst.ooad.config;
 
 import br.com.study.headfirst.ooad.instrument.Instrument;
+import br.com.study.headfirst.ooad.instrument.InstrumentSpec;
 import br.com.study.headfirst.ooad.instrument.characteristics.Builder;
+import br.com.study.headfirst.ooad.instrument.characteristics.InstrumentType;
 import br.com.study.headfirst.ooad.instrument.characteristics.Type;
 import br.com.study.headfirst.ooad.instrument.characteristics.Wood;
-import br.com.study.headfirst.ooad.instrument.guitar.Guitar;
-import br.com.study.headfirst.ooad.instrument.guitar.GuitarSpec;
-import br.com.study.headfirst.ooad.instrument.mandolin.Mandolin;
-import br.com.study.headfirst.ooad.instrument.mandolin.MandolinSpec;
 import br.com.study.headfirst.ooad.inventory.Inventory;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by rafael on 20/08/17.
@@ -21,41 +21,80 @@ public class FindGuitarTester {
         Inventory inventory = new Inventory();
         intializeInventory(inventory);
 
-        GuitarSpec whatErinLikes = new GuitarSpec(Builder.FENDER, "Stratocastor", Type.ELECTRIC, Wood.ALDER, Wood.ALDER, 4);
+        Map desiredProperties = new HashMap();
+        desiredProperties.put("builder", Builder.GIBSON);
+        desiredProperties.put("backWood", Wood.MAPLE);
+        InstrumentSpec whatClientLikes = new InstrumentSpec(desiredProperties);
 
-        List<Instrument> instruments = inventory.search(whatErinLikes);
+        List<Instrument> instruments = inventory.search(whatClientLikes);
 
         if(instruments.size() == 0) {
-            System.out.println("Sorry, Erin, we have nothing for you");
+            System.out.println("Sorry, Dear Client, we have nothing for you");
         } else {
             for (Instrument foundInstrument : instruments) {
-                if (foundInstrument instanceof Guitar) {
-                    GuitarSpec guitarSpec = (GuitarSpec) foundInstrument.getSpec();
-                    System.out.println("Erin, you might like this Guitar: " + guitarSpec.getBuilder() + " " + guitarSpec.getModel() + " " + guitarSpec.getType() + " guitar:" + "\n" +
-                            "\t" + guitarSpec.getBackWood() + " back and sides," + "\n" +
-                            "\t" + guitarSpec.getTopWood() + " top." + "\n" +
-                            "\t" + guitarSpec.getNumStrings() + " Strings." + "\n" +
-                            "You can have it for only $" + foundInstrument.getPrice() + "!");
-                    System.out.println("------------------------------------------------");
-                } else if (foundInstrument instanceof Mandolin) {
-                    MandolinSpec mandolinSpec = (MandolinSpec) foundInstrument.getSpec();
-                    System.out.println("Erin, you might like this Mandolin: " + mandolinSpec.getBuilder() + " " + mandolinSpec.getModel() + " " + mandolinSpec.getType() + " guitar:" + "\n" +
-                            "\t" + mandolinSpec.getBackWood() + " back and sides," + "\n" +
-                            "\t" + mandolinSpec.getTopWood() + " top." + "\n" +
-                            "\t" + mandolinSpec.getType() + " Style." + "\n" +
-                            "You can have it for only $" + foundInstrument.getPrice() + "!");
-                    System.out.println("------------------------------------------------");
-                }
+                InstrumentSpec spec = foundInstrument.getSpec();
 
+                System.out.println("We just found you a instrument with the following characteristics:");
+                for (String property : spec.getProperties()) {
+                    System.out.println("\t" + property + " : " + spec.getProperty(property).toString());
+                }
+                System.out.println("You can have it for only $" + foundInstrument.getPrice() + "!");
+                System.out.println("------------------------------------------------");
             }
         }
     }
 
     private static void intializeInventory(Inventory inventory) {
-        inventory.addInstrument("214534", Double.valueOf(2000.00), new GuitarSpec(Builder.FENDER, "Model 1", Type.ELECTRIC, Wood.ALDER, Wood.ALDER, 4));
-        inventory.addInstrument("D32334", Double.valueOf(9999.99), new GuitarSpec(Builder.FENDER, "Stratocastor", Type.ACOUSTIC, Wood.ALDER, Wood.ALDER, 4));
-        inventory.addInstrument("H86833", Double.valueOf(5000.00), new GuitarSpec(Builder.EASTWOOD, "Stratocastor", Type.ELECTRIC, Wood.ALDER, Wood.ALDER, 4));
-        inventory.addInstrument("V95693", Double.valueOf(1499.95), new GuitarSpec(Builder.FENDER, "Stratocastor", Type.ELECTRIC, Wood.ALDER, Wood.ALDER, 4));
-        inventory.addInstrument("T44324", Double.valueOf(4499.95), new GuitarSpec(Builder.FENDER, "Stratocastor", Type.ELECTRIC, Wood.ALDER, Wood.ALDER, 4));
+        Map properties = new HashMap();
+        properties.put("instrumentType", InstrumentType.GUITAR);
+        properties.put("builder", Builder.COLLINGS);
+        properties.put("model", "CJ");
+        properties.put("type", Type.ACOUSTIC);
+        properties.put("numStrings", 6);
+        properties.put("topWood", Wood.INDIAN_ROSEWOOD);
+        properties.put("backWood", Wood.STIKA);
+        inventory.addInstrument("11277", 3999.95, new InstrumentSpec(properties));
+
+        properties.put("builder", Builder.MARTIN);
+        properties.put("model", "D-18");
+        properties.put("topWood", Wood.MAHOGANY);
+        properties.put("backWood", Wood.ADINRONDACK);
+        inventory.addInstrument("122784", 5495.95, new InstrumentSpec(properties));
+
+        properties.put("builder", Builder.FENDER);
+        properties.put("model", "Stratocastor");
+        properties.put("type", Type.ELECTRIC);
+        properties.put("topWood", Wood.ALDER);
+        properties.put("backWood", Wood.ALDER);
+        inventory.addInstrument("V95693", 1499.95, new InstrumentSpec(properties));
+        inventory.addInstrument("V9512", 1549.95, new InstrumentSpec(properties));
+
+        properties.put("builder", Builder.GIBSON);
+        properties.put("model", "Les Paul");
+        properties.put("topWood", Wood.MAPLE);
+        properties.put("backWood", Wood.MAPLE);
+        inventory.addInstrument("70108276", 2295.95,
+                new InstrumentSpec(properties));
+
+        properties.put("model", "SG '61 Reissue");
+        properties.put("topWood", Wood.MAHOGANY);
+        properties.put("backWood", Wood.MAHOGANY);
+        inventory.addInstrument("82765501", 1890.95,
+                new InstrumentSpec(properties));
+
+        properties.put("instrumentType", InstrumentType.MANDOLIN);
+        properties.put("type", Type.ACOUSTIC);
+        properties.put("model", "F-5G");
+        properties.put("backWood", Wood.MAPLE);
+        properties.put("topWood", Wood.MAPLE);
+        properties.remove("numStrings");
+        inventory.addInstrument("9019920", 5495.99, new InstrumentSpec(properties));
+
+        properties.put("instrumentType", InstrumentType.BANJO);
+        properties.put("model", "RB-3 Wreath");
+        properties.remove("topWood");
+        properties.put("numStrings", 5);
+        inventory.addInstrument("8900231", 2945.95, new InstrumentSpec(properties));
     }
+
 }

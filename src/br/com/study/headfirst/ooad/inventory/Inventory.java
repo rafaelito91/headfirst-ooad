@@ -2,10 +2,6 @@ package br.com.study.headfirst.ooad.inventory;
 
 import br.com.study.headfirst.ooad.instrument.Instrument;
 import br.com.study.headfirst.ooad.instrument.InstrumentSpec;
-import br.com.study.headfirst.ooad.instrument.guitar.Guitar;
-import br.com.study.headfirst.ooad.instrument.guitar.GuitarSpec;
-import br.com.study.headfirst.ooad.instrument.mandolin.Mandolin;
-import br.com.study.headfirst.ooad.instrument.mandolin.MandolinSpec;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -19,14 +15,7 @@ public class Inventory {
     private List<Instrument> instruments = new ArrayList<>();
 
     public void addInstrument(String serialNumber, Double price, InstrumentSpec spec) {
-        Instrument instrument = null;
-
-        if (spec instanceof GuitarSpec) {
-            instrument = new Guitar(serialNumber, price, (GuitarSpec) spec);
-        } else if (spec instanceof MandolinSpec) {
-            instrument = new Mandolin(serialNumber, price, (MandolinSpec) spec);
-        }
-
+        Instrument instrument = new Instrument(serialNumber, price, spec);
         instruments.add(instrument);
     }
 

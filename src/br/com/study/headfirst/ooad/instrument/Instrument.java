@@ -3,7 +3,7 @@ package br.com.study.headfirst.ooad.instrument;
 /**
  * Created by rafael on 29/08/17.
  */
-public abstract class Instrument {
+public class Instrument {
 
     private String serialNumber;
     private double price;
